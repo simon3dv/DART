@@ -142,6 +142,7 @@ class EnvReachLocationMLD:
         })
         init_seed['pelvis_delta'] = pelvis_delta
         init_seed['transf_transl'][:, :, 2] = -pelvis_feet_height.unsqueeze(1)  # make init frame foot on floor
+        init_seed['transf_rotmat'] = batch['transf_rotmat'] # Allow global orientation init from stand.pkl
         init_seed.update(history_motion_feature_dict)
         if self.state_human is None:
             assert len(batch_idx) == self.batch_size
